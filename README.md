@@ -11,3 +11,10 @@
 - 이름 지정 파라미터 바인딩 기법 : Map, SqlParameterSource(BeanPropertySqlParameterSource, MapSqlParameterSource)
 - SQL를 바탕으로 객체를 반환해주는 기법 : BeanPropertyRowMapper
 - INSERT SQL를 자동으로 생성해주는 기법 : SimpleJdbcInsert
+
+### 2024/12/25 : 데이터 접근 기술 - 테스트
+
+- 테스트를 위한 데이터베이스 분리 
+- 테스트의 격리성을 위한 트랜잭션 도입 
+- 테스트 트랜잭션 자동화 : @Transactional 
+- 스프링 부트에서 임베디드 모드 DB(H2) 실행 
