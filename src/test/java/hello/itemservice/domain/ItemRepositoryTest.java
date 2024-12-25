@@ -8,16 +8,31 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
+@Transactional //클래스에 존재하면 전체 테스트에 트랜잭션이 적용된다.
+@SpringBootTest //ItemServiceApplication에 있는 @SpringBootApplication을 찾아 해당 클래스의 설정을 사용한다.
 class ItemRepositoryTest {
 
     @Autowired
     ItemRepository itemRepository;
+
+    //트랜잭션 관련 코드
+    /*@Autowired
+    PlatformTransactionManager transactionManager; //스프링 부트에서 트랜잭션 매니저를 스프링 빈으로 등록해준다.
+
+    TransactionStatus status;
+
+    @BeforeEach
+    void beforeEach() {
+        //트랜잭션 시작
+        status = transactionManager.getTransaction(new DefaultTransactionDefinition());
+    }
+    */
 
     @AfterEach
     void afterEach() {
@@ -25,8 +40,12 @@ class ItemRepositoryTest {
         if (itemRepository instanceof MemoryItemRepository) {
             ((MemoryItemRepository) itemRepository).clearStore();
         }
+
+        //트랜잭션 롤백
+       // transactionManager.rollback(status);
     }
 
+    //@Commit //테스트 종료 후 롤백 대신 커밋이 호출된다. == @Rollback(value = false)
     @Test
     void save() {
         //given
@@ -87,7 +106,6 @@ class ItemRepositoryTest {
 
     void test(String itemName, Integer maxPrice, Item ... items) {
         List<Item> result = itemRepository.findAll(new ItemSearchCond(itemName, maxPrice));
-        //Hashmap에 저장된 순서되로 반환된다. 단, 데이터 저장 순서나 맵의 크기가 변경될 때 순서가 섞인다.
         assertThat(result).containsExactly(items);
     }
 }
