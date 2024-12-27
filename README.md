@@ -24,4 +24,10 @@
 
 - 스프링 부트에 MyBatis 환경 설정
 - Mybatis 기능 : 매핑 SQL XML 작성 및 실행
-- Mybatis 스프링 연동 모듈에서의 Mapper 구현체 자동 처리 과정 
+- Mybatis 스프링 연동 모듈에서의 Mapper 구현체 자동 처리 과정
+
+### 2024/12/27 : 데이터 접근 기술 - JPA
+
+- ORM 기술 표준인 JPA 사용 목적 
+- JPA 적용 및 실행
+- @Repository : 스프링에서의 JPA 예외 변환
