@@ -42,3 +42,8 @@
 - Querydsl-JPA 정의 및 활용 사례 
 - Querydsl 환경 설정 및 적용 
 
+### 2024/12/30 : 데이터 접근 기술 - 활용 방안
+
+- 스프링 데이터 JPA에서의 트레이드 오프(구조적인 문제)
+- 스프링 데이터 JPA와 Querdsl을 적용한 Service 구현 및 적용 
+- JpaTransactionManager의 다양한 지원 (이론)
